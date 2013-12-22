@@ -45,278 +45,436 @@
 					<p>
 						<small>Par <a href="http://www.christophelaffont.com">Christophe Laffont</a> / <a href="http://twitter.com/touffies">@touffies</a></small>
 					</p>
-					
 				</section>
 
 				
 				<!-- Intro JQUERY -->
 				<section>
-					<h2>Pourquoi jQuery</h2>
-					<p>jQuery est une librairie JavaScript qui qui permet de manipuler le DOM, d'utiliser AJAX, de créer des animations...</p>
-				    <ul>
-					    <li>Simplifier le code</li>
-					    <li>Cross browser</li>
-					    <li>HTML / DOM manipulation</li>
-					    <li>CSS manipulation</li>
-					    <li>Gestionnaire d'évènements</li>
-					    <li>Effets / Animations</li>
-					    <li>Facilite les requêtes Ajax</li>
-					</ul>
+					<section>
+						<h2>Pourquoi jQuery</h2>
+						<p>jQuery est une librairie JavaScript qui qui permet de manipuler le DOM, d'utiliser AJAX, de créer des animations...</p>
+					    <ul>
+						    <li>Simplifier le code</li>
+						    <li>Cross browser</li>
+						    <li>HTML / DOM manipulation</li>
+						    <li>CSS manipulation</li>
+						    <li>Gestionnaire d'évènements</li>
+						    <li>Effets / Animations</li>
+						    <li>Facilite les requêtes Ajax</li>
+						</ul>
+					</section>
+					<section>
+					    <h2>Installation</h2>
+					    <p>Utilisation d'un CDN avec fallback</p>
+						<pre><code>
+	&lt;script src="http://ajax.aspnetcdn.com/ajax/jquery/jquery-2.0.0.min.js"&gt;&lt;/script>
+	&lt;script&gt;
+	if (typeof jQuery == 'undefined') {
+	    document.write(unescape("%3Cscript src='/js/jquery-2.0.0.min.js' type='text/javascript'%3E%3C/script%3E"));
+	}
+	&lt;/script&gt;
+						</code></pre>
+						<small>Télécharger : <a href="http://jquery.com/download/" target="_blank">http://jquery.com/download/</a></small>
+						<aside class="notes">
+							UN grand avantage de l'utilisation de jQuery hébergé par Google est que de nombreux utilisateurs auront déjà télécharger jQuery de Google lors de la visite d'un autre site.
+						</aside>
+					</section>
+					<section>
+						<h3>La fonction jquery()</h3>
+						<p>jQuery repose sur une seule fonction : jQuery() ou $(). Comme toutes les fonctions JavaScript elle accepte des paramètres, et retourne un objet, que nous appellons "objet jQuery".</p>
+					</section>
+					<section>
+						<p>Pour s'assurer que la fonction jQuery s'exécute une fois la page chargée et pouvoir manipuler le DOM sans erreur, on en-capsule l’ensemble du code jQuery dans le code ci-dessous. (Contrairement à l’évènement window.onload, le chargement complet des images de la page n’est pas nécessaire.)</p>
+						<pre><code>$(function(){
+	   // Traitement à effectuer lorsque le DOM est prêt
+	});</code></pre>
+					</section>
+					<section>
+						<h3>Moins de code</h3>
+						<b>Javascript</b></p>
+						<pre><code>
+	var objs = document.getElementByTagName("div");
+	for ( i = 0; i &lt; objs.length; i++ ){
+		obj[i].style.display = 'none';
+	}
+						</code></pre>
+						<b>jQuery</b>
+						<pre><code>
+	$("div").hide();
+						</code></pre>
+					</section>
 				</section>
-				<section>
-				    <h2>Installation</h2>
-				    <p>Utilisation d'un CDN avec fallback</p>
-					<pre><code>
-&lt;script src="http://ajax.aspnetcdn.com/ajax/jquery/jquery-2.0.0.min.js"&gt;&lt;/script>
-&lt;script&gt;
-if (typeof jQuery == 'undefined') {
-    document.write(unescape("%3Cscript src='/js/jquery-2.0.0.min.js' type='text/javascript'%3E%3C/script%3E"));
-}
-&lt;/script&gt;
-					</code></pre>
-					<small>Télécharger : <a href="http://jquery.com/download/" target="_blank">http://jquery.com/download/</a></small>
-					<aside class="notes">
-						UN grand avantage de l'utilisation de jQuery hébergé par Google est que de nombreux utilisateurs auront déjà télécharger jQuery de Google lors de la visite d'un autre site.
-					</aside>
-				</section>
-				<section>
-					<h3>La fonction jquery()</h3>
-					<p>jQuery repose sur une seule fonction : jQuery() ou $(). Comme toutes les fonctions JavaScript elle accepte des paramètres, et retourne un objet, que nous appellons "objet jQuery".</p>
-				</section>
-				<section>
-					<p>Pour s'assurer que la fonction jQuery s'exécute une fois la page chargée et pouvoir manipuler le DOM sans erreur, on en-capsule l’ensemble du code jQuery dans le code ci-dessous. (Contrairement à l’évènement window.onload, le chargement complet des images de la page n’est pas nécessaire.)</p>
-					<pre><code>$(function(){
-   // Traitement à effectuer lorsque le DOM est prêt
-});</code></pre>
-				</section>
-				<section>
-					<h3>Moins de code</h3>
-					<b>Javascript</b></p>
-					<pre><code>
-var objs = document.getElementByTagName("div");
-for ( i = 0; i &lt; objs.length; i++ ){
-	obj[i].style.display = 'none';
-}
-					</code></pre>
-					<b>jQuery</b>
-					<pre><code>
-$("div").hide();
-					</code></pre>
-				</section>
-			</section>
 
 			
-			<!-- Présentation des sélecteurs -->
-			<section>
+				<!-- Présentation des sélecteurs -->
 				<section>
-					<h2>Présentation des sélecteurs</h2>
-				</section>
-				<section>
-					<p>jQuery propose deux approches pour sélectionner des éléments. La première utilise une combinaison de sélecteurs CSS et XPath passés comme chaîne de caractères au  constructeur jQuery (comme par exemple $("div > ul a")). La seconde se sert de différentes méthodes de l’objet jQuery. Les deux approches peuvent être combinées.</p>
-				</section>	
-				<section>
-					<h3>Les sélecteurs de base</h3>
+					<section>
+						<h2>Présentation des sélecteurs</h2>
+					</section>
+					<section>
+						<p>jQuery propose deux approches pour sélectionner des éléments. La première utilise une combinaison de sélecteurs CSS et XPath passés comme chaîne de caractères au  constructeur jQuery (comme par exemple $("div > ul a")). La seconde se sert de différentes méthodes de l’objet jQuery. Les deux approches peuvent être combinées.</p>
+					</section>	
+					<section>
+						<h3>Les sélecteurs de base</h3>
 
-					<p>Les sélecteurs de base correspondent aux fonctions <code>getElementById</code> et <code>getElementsByTagName</code>.</p>
+						<p>Les sélecteurs de base correspondent aux fonctions <code>getElementById</code> et <code>getElementsByTagName</code>.</p>
 
-					<pre><code>
-$(document) // Extension de l'objet document à la classe jQuery.
-$('*') // Sélectionne tous les éléments.
-$(this) // Sélectionne l'élement en cours.
-$('#box') // Sélectionne l'élément ayant l'ID "box".
-$('div') // Sélectionne tous les éléments de type &lt;div&gt;.
-$('p.first') // Sélectionne les éléments &lt;p&gt; ayant la classe "first".
-					</pre></code>
+						<pre><code>
+	$(document) // Extension de l'objet document à la classe jQuery.
+	$('*') // Sélectionne tous les éléments.
+	$(this) // Sélectionne l'élement en cours.
+	$('#box') // Sélectionne l'élément ayant l'ID "box".
+	$('div') // Sélectionne tous les éléments de type &lt;div&gt;.
+	$('p.first') // Sélectionne les éléments &lt;p&gt; ayant la classe "first".
+						</pre></code>
 
-					<small>Les sélections peuvent être cumulées $('#box, div, p.first').</small>
-                </section>
-                <section>
-					<h3>Les sélecteurs de base</h3>
+						<small>Les sélections peuvent être cumulées $('#box, div, p.first').</small>
+	                </section>
+	                <section>
+						<h3>Les sélecteurs de base</h3>
 
-					<p>Séléction hiérarchiques</p>
-					<pre><code>
-$('#box p') // Sélectionne tous les descendants &lt;p&gt; de l'élément identifié par box
-$('#box > p') // Sélectionne tous les &lt;p&gt; immédiats contenus dans l'élément identifié par box
-$('#box ~ p') // Sélectionne tous les &lt;p&gt; frères de l'élément identifié par box
-$('#box + p') // Sélectionne tous les &lt;p&gt; dont l'élément précédent (dans le DOM) est l'élément identifié par box
-					</pre></code>
-                </section>
-				<section>
-					<h3>Séléction par filtres</h3>
-					<pre><code>
-$('li:first') // Sélectionne le premier élément de la liste &lt;li&gt;.
-$('li:last') // Sélectionne le dernier élément de la liste &lt;li&gt;.
-$('li:[even|odd]') // Sélectionne les éléments &lt;li&gt; de rang [pair|impair] (le premier rang est 0).
-$('li:[eq|lt|gt](n)')// Sélectionne le ou les éléments &lt;li&gt; de rang [égal|inférieur|supérieur] à n.
-$(':header') // Sélectionne toutes les balises &lt;h&gt;.
-$(':animated') // Sélectionne les éléments actuellement animés.
-$('div:not(.ok)') // Sélectionne les &lt;div&gt; n'ayant pas la classe "ok".
-					</code></pre>
-					<small>* La notation [a|b] signifie que l'on applique le filtre a ou le filtre b.</small>
+						<p>Séléction hiérarchiques</p>
+						<pre><code>
+	$('#box p') // Sélectionne tous les descendants &lt;p&gt; de l'élément identifié par box
+	$('#box > p') // Sélectionne tous les &lt;p&gt; immédiats contenus dans l'élément identifié par box
+	$('#box ~ p') // Sélectionne tous les &lt;p&gt; frères de l'élément identifié par box
+	$('#box + p') // Sélectionne tous les &lt;p&gt; dont l'élément précédent (dans le DOM) est l'élément identifié par box
+						</pre></code>
+	                </section>
+					<section>
+						<h3>Séléction par filtres</h3>
+						<pre><code>
+	$('li:first') // Sélectionne le premier élément de la liste &lt;li&gt;.
+	$('li:last') // Sélectionne le dernier élément de la liste &lt;li&gt;.
+	$('li:[even|odd]') // Sélectionne les éléments &lt;li&gt; de rang [pair|impair] (le premier rang est 0).
+	$('li:[eq|lt|gt](n)')// Sélectionne le ou les éléments &lt;li&gt; de rang [égal|inférieur|supérieur] à n.
+	$(':header') // Sélectionne toutes les balises &lt;h&gt;.
+	$(':animated') // Sélectionne les éléments actuellement animés.
+	$('div:not(.ok)') // Sélectionne les &lt;div&gt; n'ayant pas la classe "ok".
+						</code></pre>
+						<small>* La notation [a|b] signifie que l'on applique le filtre a ou le filtre b.</small>
+					</section>
+					<section>
+						<h3>Séléction par filtres enfants</h3>
+						<pre><code>
+	$('ul:[first-child|last-child]') // Sélectionne les [premiers|derniers] éléments fils &lt;li&gt;de tout les &lt;ul&gt;.
+	$('ul:nth-child([n|even|odd|equation])') // Séléctionne les enfants de &lt;ul&gt; [de rang n|pairs|impairs|résultat de].
+	$('div:only-child') // Sélectionne les éléments qui sont les seuls enfants d'un élément &lt;div&gt;.
+						</code></pre>
+					</section>
+					<section>
+						<h3>Séléction par filtres de contenu</h3>
+						<pre><code>
+	$("div:contains('toto')") // Sélectionne les éléments &lt;div&gt; contenant le texte "toto" (sensible à la casse !)
+	$('div:empty') // Sélectionne les éléments &lt;div&gt; vides.
+	$('div:parent') // Sélectionne les éléments &lt;div&gt; ayant des enfants (y compris les noeuds texte).
+	$('div:has(p)') // Sélectionne les éléments &lt;div&gt; ayant un descendant &lt;p&gt;.
+						</code></pre>
+					</section>
+					<section>
+						<h3>Séléction par filtres de visibilité</h3>
+						<pre><code>
+	$("div:[visible|hidden]") // Sélectionne les &lt;div&gt; qui sont [visibles|cachés].
+						</code></pre>
+					</section>
+					<section>
+						<h3>Séléction par filtres d'attribut</h3>
+						<pre><code>
+	$('p[title]') //Sélectionne les éléments &lt;p&gt; ayant un attribut "title".
+	$('p[title="Bonjour"]') // Sélectionne les éléments &lt;p&gt; dont l'attribut title est "Bonjour".
+	$('p[title!="Bonjour"]') // Sélectionne les éléments &lt;p&gt; dont l'attribut title n'est pas "Bonjour".
+	$('p[title^="H"]') // Sélectionne les éléments dont l'attribut title commence par "H".
+	$('p[title$="H"]') // Sélectionne les éléments dont l'attribut title fini par "H".
+	$('p[title*="H"]') // Sélectionne les éléments dont l'attribut title contient "H".
+						</code></pre>
+					</section>
+					<section>
+						<h3>Les éléments de formulaire</h3>
+						<pre><code>
+	$(':input') // Tous les éléments &lt;input&gt;, &lt;textarea&gt;, &lt;select&gt; et &lt;button&gt;.
+	$(':[text|password|radio|checkbox|submit|image|reset|button|file|hidden]') // Les &lt;input&gt; du type choisi.
+	$(':[enabled|disabled|checked|selected]') // Les &lt;input&gt; possédant l'attibut indiqué.
+						</code></pre>
+					</section>
 				</section>
-				<section>
-					<h3>Séléction par filtres enfants</h3>
-					<pre><code>
-$('ul:[first-child|last-child]') // Sélectionne les [premiers|derniers] éléments fils &lt;li&gt;de tout les &lt;ul&gt;.
-$('ul:nth-child([n|even|odd|equation])') // Séléctionne les enfants de &lt;ul&gt; [de rang n|pairs|impairs|résultat de].
-$('div:only-child') // Sélectionne les éléments qui sont les seuls enfants d'un élément &lt;div&gt;.
-					</code></pre>
-				</section>
-				<section>
-					<h3>Séléction par filtres de contenu</h3>
-					<pre><code>
-$("div:contains('toto')") // Sélectionne les éléments &lt;div&gt; contenant le texte "toto" (sensible à la casse !)
-$('div:empty') // Sélectionne les éléments &lt;div&gt; vides.
-$('div:parent') // Sélectionne les éléments &lt;div&gt; ayant des enfants (y compris les noeuds texte).
-$('div:has(p)') // Sélectionne les éléments &lt;div&gt; ayant un descendant &lt;p&gt;.
-					</code></pre>
-				</section>
-				<section>
-					<h3>Séléction par filtres de visibilité</h3>
-					<pre><code>
-$("div:[visible|hidden]") // Sélectionne les &lt;div&gt; qui sont [visibles|cachés].
-					</code></pre>
-				</section>
-				<section>
-					<h3>Séléction par filtres d'attribut</h3>
-					<pre><code>
-$('p[title]') //Sélectionne les éléments &lt;p&gt; ayant un attribut "title".
-$('p[title="Bonjour"]') // Sélectionne les éléments &lt;p&gt; dont l'attribut title est "Bonjour".
-$('p[title!="Bonjour"]') // Sélectionne les éléments &lt;p&gt; dont l'attribut title n'est pas "Bonjour".
-$('p[title^="H"]') // Sélectionne les éléments dont l'attribut title commence par "H".
-$('p[title$="H"]') // Sélectionne les éléments dont l'attribut title fini par "H".
-$('p[title*="H"]') // Sélectionne les éléments dont l'attribut title contient "H".
-					</code></pre>
-				</section>
-				<section>
-					<h3>Les éléments de formulaire</h3>
-					<pre><code>
-$(':input') // Tous les éléments &lt;input&gt;, &lt;textarea&gt;, &lt;select&gt; et &lt;button&gt;.
-$(':[text|password|radio|checkbox|submit|image|reset|button|file|hidden]') // Les &lt;input&gt; du type choisi.
-$(':[enabled|disabled|checked|selected]') // Les &lt;input&gt; possédant l'attibut indiqué.
-					</code></pre>
-				</section>
-			</section>
-
-
-			<!-- Les méthodes -->
-			<section>
-			    <section>
-			        <h2>Les Méthodes</h2>
-				</section>
-        		<section>
-					<h3>Méthodes utilitaires</h3>
-					<ul>
-						<li><b>$.each(collection, callback(index,value))</b> : applique une fonction sur chaque éément de la selection.</li>
-						<li><b>data(key,value)</b> : associe une paire clé/valeur à un élément sélectionné.</li>
-						<li><b>data(key)</b> : lit une valeur par sa clé sur l'élement sélectionné.</li>
-					</ul>
-				</section>
-				<section>
-					<h3>Conenu d'un élément</h3>
-					<p>La méthode <b>text()</b> permet de lire et modifier le contenu d'un élément sous forme textuelle.</p>
-					<small>Les balises seront transformés en entité <b>& lt;</b> et <b>& gt;</b></small>
-
-					<p>La méthode <b>html()</b> permet de lire et modifier le contenu HTML d'un élément. (Cette méthode utilise innerHTML)</p>
-				</section>
-				<section>
-					<h3>Gestion des CSS (Classes)</h3>
-					<ul>
-						<li><b>addClass</b> : ajout d'une ou plusieurs classes</li>
-						<li><b>removeClass</b> : suppression d'une ou plusieurs classes</li>
-						<li><b>hasClass</b> : vérifie la présence d'une classe</li>
-						<li><b>toggleClass</b> : ajoute ou supprime une classe</li>
-					</ul>
-				</section>
-				<section>
-					<h3>Gestion des CSS (Styles)</h3>
-					<ul>
-						<li><b>css()</b> : permet de metre à jour ou de récupérer un style</li>
-						<li><b>height(), width()</b> : Retourne la hauteur et la largeur</li>
-						<li><b>innerHeight(), innerWidth()</b> : dimension interne</li>
-						<li><b>outerHeight(), outerWidth()</b> : dimension externe</li>
-						<li><b>position()</b> : retourn sous forme d'objet {top,left} la position par rapport au parent</li>
-						<li><b>offset()</b> : retourn sous forme d'objet {top,left} la position relative par rapport au document</li>
-						<li><b>scrollTop(), scrollLeft()</b> : Modifie le décalage entre le bord du document et l'élément sélectionné</li>
-					</ul>
-				</section>
-				<section>
-					<h3>Les événements</h3>
-					<ul>
-						<li>Chargement du document : <b>load(), ready(), unload()</b></li>
-						<li>Evénements du formulaire : <b>blur(), change(), focus(), select(), submit()</b></li>
-						<li>Evénements clavier : <b>focusin(), focusout(), keydown(), keypressed(), keyup()</b></li>
-						<li>Evénements souris
-							<ul>
-								<li>Click : <b>click(), dbclick()</b></li>
-								<li>Mouvements : <b>mousedown(), mouseup(), mousemove(),mouseover()</b></li>
-								<li><b>hover() et toggle()</b></li>
-							</ul>
-						</li>
-					</ul>
-					<small>Certains événements IE sont émulés : <b>mouseenter() et mouseleave()</b></small>
-				</section>
-				<section>
-					<h3>Les événements</h3>
-					<p><b>bind()</b> permet de lier un (ou plusieurs) événement, des données et un gestionnaire d'événement à une sélection d'élément</p>
-					<small>L'utilisation de <b>.on()</b> est recommendée</small>
-				</section>
-			</section>
 
 
-			<!-- Les effets -->
-			<section>
+				<!-- Les méthodes -->
 				<section>
-					<h2>Les effets</h2>
+				    <section>
+				        <h2>Les Méthodes</h2>
+					</section>
+	        		<section>
+						<h3>Méthodes utilitaires</h3>
+						<ul>
+							<li><b>$.each(collection, callback(index,value))</b> : applique une fonction sur chaque éément de la selection.</li>
+							<li><b>data(key,value)</b> : associe une paire clé/valeur à un élément sélectionné.</li>
+							<li><b>data(key)</b> : lit une valeur par sa clé sur l'élement sélectionné.</li>
+						</ul>
+					</section>
+					<section>
+						<h3>Gestion des attibuts</h3>
+						<p><b>attr()</b> possède plusieurs signature permettant :</p>
+						<pre><code>
+	$(this).attr('name'); // Connaître la valeur d'un attibut
+	$(this).attr('name', 'toto'); // Changer la valeur d'un attribut
+	$(this).attr({name: 'toto', value: 'tutu'); // Changer la valeur de plusieurs attributs (Format JSON)
+	$(this).attr('value', function(index,value){ // Changer l'attibut à l'aide de fonction
+		if(index > 1)
+			return "item" + index;
+	});					
+						</code></pre>
+						<p>Il existe également <b>removeAttr()</b> pour supprimer et <b>val()</b> qui retourne la valeur de l'attribut "value".</p>
+					</section>
+					<section>
+						<h3>Conenu d'un élément</h3>
+						<p>La méthode <b>text()</b> permet de lire et modifier le contenu d'un élément sous forme textuelle.</p>
+						<small>Les balises seront transformés en entité <b>& lt;</b> et <b>& gt;</b></small>
+
+						<p>La méthode <b>html()</b> permet de lire et modifier le contenu HTML d'un élément. (Cette méthode utilise innerHTML)</p>
+					</section>
+					<section>
+						<h3>Gestion des CSS (Classes)</h3>
+						<ul>
+							<li><b>addClass</b> : ajout d'une ou plusieurs classes</li>
+							<li><b>removeClass</b> : suppression d'une ou plusieurs classes</li>
+							<li><b>hasClass</b> : vérifie la présence d'une classe</li>
+							<li><b>toggleClass</b> : ajoute ou supprime une classe</li>
+						</ul>
+					</section>
+					<section>
+						<h3>Gestion des CSS (Styles)</h3>
+						<ul>
+							<li><b>css()</b> : permet de metre à jour ou de récupérer un style</li>
+							<li><b>height(), width()</b> : Retourne la hauteur et la largeur</li>
+							<li><b>innerHeight(), innerWidth()</b> : dimension interne</li>
+							<li><b>outerHeight(), outerWidth()</b> : dimension externe</li>
+							<li><b>position()</b> : retourne sous forme d'objet {top,left} la position par rapport au parent</li>
+							<li><b>offset()</b> : retourne sous forme d'objet {top,left} la position relative par rapport au document</li>
+							<li><b>scrollTop(), scrollLeft()</b> : Modifie le décalage entre le bord du document et l'élément sélectionné</li>
+						</ul>
+					</section>
+					<section>
+						<h3>Les événements</h3>
+						<ul>
+							<li>Evenements du navigateur : <b>error(), resize() et scroll()</b></li>
+							<li>Chargement du document : <b>load(), ready(), unload()</b></li>
+							<li>Evénements du formulaire : <b>blur(), change(), focus(), select(), submit()</b></li>
+							<li>Evénements clavier : <b>focusin(), focusout(), keydown(), keypressed(), keyup()</b></li>
+							<li>Evénements souris
+								<ul>
+									<li>Click : <b>click(), dbclick()</b></li>
+									<li>Mouvements : <b>mousedown(), mouseup(), mousemove(),mouseover()</b></li>
+									<li><b>hover() et toggle()</b></li>
+								</ul>
+							</li>
+						</ul>
+						<small>Certains événements IE sont émulés : <b>mouseenter() et mouseleave()</b></small>
+						<aside class="notes">
+							error() : événement invoqué en cas d'erreur JavaScript
+							resize() : événement invoqué lors du redimensionnement de la fenêtre du navigateur
+							scroll() : événement invoqué lors de l'utilisation des barres de scrolling
+							load() : invoqué lorsqu'un élément et ses fils ont été complètements chargés (image, script, frame, iframe et window)
+							ready() : invoqué lorsque le DOM est construit
+							unload() : invoqué lorsque l'utilisateur quitte la page
+							blur() : invoqué lors de la perte de focus
+							change() : invoqué lors du changement d'un élément de formulaire
+							focus() : invoqué lors de la prise de focus
+							select() : invoqué lors de la sélection d'un texte dans un &lt;input&gt; ou un &lt;textarea&gt;
+							submit() : invoqué lors de la soumission d'un formulaire
+							focusin() : invoqué si un élément ou un des ses fils gagne le focus
+							focusout() : invoqué si un élément ou un des ses fils pert le focus
+							keydown() : invoqué lors de l'appui d'une touche du clavier
+							keypressed() : invoqué lors de l'appui d'une touche du clavier (avec gestion de la répétition)
+							keyup() : invoqué lors du relâchement d'une touche du clavier
+						</aside>
+					</section>
+					<section>
+						<h3>Les événements</h3>
+						<p><b>bind()</b> permet de lier un (ou plusieurs) événement, des données et un gestionnaire d'événement à une sélection d'élément</p>
+						<small>L'utilisation de <b>.on()</b> est recommendé.</small>
+					</section>
 				</section>
-				<section>
-					<h3>Les effets</h3>
-					<p>La plupart des fonctions sur les effets utilise des parmètres optionnels :</p>
-					<ul>
-						<li><b>speed</b> : 'slow', 'normal' ou 'fast' - ou un nombre en millisecondes</li>
-						<li><b>easing</b> : effet prédéfini personnalisé par plugin</li>
-						<li><b>function</b> : une fonction callback qui sera invoquée à la fin de l'effet</li>
-					</ul>
-				</section>
-				<seciton>
-					<h3>Les effets</h3>
-					<ul>
-						<li>Effets de base : <b>hide(), show()</b></li>
-						<li>Glissements : <b>slideDown(), slideUp()</b></li>
-						<li>Effets de fondu : <b>fadeIn(), fadeOut(), fadeTo()</b></li>
-						<li>Evénements souris
-							<ul>
-								<li>Click : <b>click(), dbclick()</b></li>
-								<li>Mouvements : <b>mousedown(), mouseup(), mousemove(),mouseover()</b></li>
-								<li><b>hover() et toggle()</b></li>
-							</ul>
-						</li>
-					</ul>
-					<aside class="notes">
-							fadeTo : modifie l'opacité de l'élément sélectionné
-					</aside>
-				</seciton>
-			</section>
 
 
-			<!-- Asctuces et bonnes pratiques -->
-			<section>
-$.trim("  une chaine  "); // Supprimer les espaces en début et fin de chaine				
+				<!-- Les effets -->
 				<section>
-			        <h2>Chainage</h2>
-					<pre><code>
-$("div").hide();
-$("div").addClass("newclass");
-$("div").html();
+					<section>
+						<h2>Les effets</h2>
+					</section>
+					<section>
+						<h3>Les effets</h3>
+						<p>La plupart des fonctions sur les effets utilise des parmètres optionnels :</p>
+						<ul>
+							<li><b>speed</b> : 'slow', 'normal' ou 'fast' - ou un nombre en millisecondes</li>
+							<li><b>easing</b> : effet prédéfini personnalisé par plugin</li>
+							<li><b>function</b> : une fonction callback qui sera invoquée à la fin de l'effet</li>
+						</ul>
+					</section>
+					<section>
+						<h3>Les effets</h3>
+						<ul>
+							<li>Effets de base : <b>hide(), show()</b></li>
+							<li>Glissements : <b>slideDown(), slideUp()</b></li>
+							<li>Effets de fondu : <b>fadeIn(), fadeOut(), fadeTo()</b></li>
+							<li>Différer un effet : <b>delay()</b></li>
+							<li>Passer d'un effet à l'autre : <b>toggle(), slideToggle(), fadeToggle()</b></li>
 
-// Méthode de chainage
-$("div").addClass("newclass").fadeOut();
-				    </code></pre>
+						</ul>
+						<aside class="notes">
+							hide() : cache la sélection
+							show() : affiche la sélection
+							slideDown() : fait apparître, par glissement vers le bas, un élément
+							slideUp() : fait disparître, par glissement vers le haut, un élément
+							fadeIn() : fait apparaître un élément avec un effet de fondu
+							fadeOut() : fait disparaitre un élément avec un effet de fondu
+							fadeTo() : modifie l'opacité de l'élément sélectionné
+
+							Tips : la méthode delay() permet de différer un effet
+						</aside>
+					</section>
+					<section>
+						<h3>Les effets avec animate()</h3>
+						<p><b>animate()</b> permet de créer une animation.</p>
+						<ul>
+							<li>un paramètre obligqtoire sous forme d'objet JSON fournit les styles à animer</li>
+							<li>des paramètres optionnels : vitesse, easing et une fonction callback</li>
+						</ul>
+						<pre><code>
+	$(this).animate(
+		{ left:300, width:"200px", opacity:0.5 },
+		1000,
+		function(){ alert("Animation terminée !"); }
+	);					</code></pre>
+
+					</section>
 				</section>
-        		<section>
-					<h3>Liens utiles</h3>
-					<ul>
-						<li>http://jsperf.com/</li>
+
+				<!-- Parcourir le DOM -->
+				<section>
+					<section>
+						<h2>Le DOM</h2>
+					</section>
+					<section>
+						<h3>Parcourir le DOM</h3>
+						<p>L'ensemble des méthodes jQuery de parcours du DOM renvoie un objet jQuery, ce qui permet de chaîner les appels</p>
+						<pre><code>
+	children() // renvoie les enfants immédiats de chaque élément sélectionné
+	parent() // renvoie le parent immédiat de chaque élément sélectionné
+	parents() // renvoie une collection d'éléments ancêtres de chaque élément sélectionné
+	parentUntil() // renvoie une collection d'éléments ancêtres de chaque élément sélectionné, jusqu'à un élément ou sélecteur
+	siblings() // renvoie les frères de chaque élément de la sélection
+	prev(), prevAll() // renvoie le frère immédiatement précédent / les frères précédents de chaque élément de la sélection
+	next(), nextAll() // renvoie le frère immédiatement suivrant / les frères suivants de chaque élément de la sélection
+	content() // renvoie tous les noeuds enfants de chaque élément de la sélection
+	closest() // renvoie le parent le plus proche de chaque élément sélectionné
+	find() // renvoie les descendants de chaque élément sélectionné
+						</code></pre>
+					</section>
+					<section>
+						<h3>Manipuler le DOM</h3>
+						<p>L'ensemble des méthodes jQuery de parcours du DOM renvoie un objet jQuery, ce qui permet de chaîner les appels</p>
+						<pre><code>
+	text() et html() // modification du contenu
+	append() // ajout à l'intérieur de l'élément sélectionné
+	after() // ajout après l'élément sélectionné
+	before() // ajout avant l'élément sélectionné
+	wrap() // ajout autour de l'élément sélectionné
+	wrapAll() // ajout autour de tous les éléments de la sélection
+	wrapInner() // ajout autour des enfants de l'élément sélectionné
+	unwrap() // annule l'action de wrap()
+	replaceWith() // remplace l'élément sélectionné par le contenu spécifié
+	remove() // supprime du DOM tous les éléments répondant aux critères de sélection
+	detach() // comme remove(), mais en conservant les données associées
+	clone() // copie les éléments
+						</code></pre>
+					</section>
+					<section>
+						<h3>Filtrer le DOM</h3>
+						<pre><code>
+	filter(expression) // réduit l'ensemble des éléments sélectionnés à ceux qui passe le filtre
+	eq(index) // reduit l'ensemble des éléments sélectionnés à celui correspondant à la position
+	is(expression) // indique si la sélection répond à un critère (retourne true ou false)
+	first() et last() // reduit l'ensemble des éléments sélectionnés au premier ou dernier item
+	has(selecteur) // reduit l'ensemble des éléments sélectionnés à ceux qui ont un descendant correspondant au sélecteur					
+						</code></pre>
+					</section>
+				</section>
+
+
+				<!-- AJAX -->
+				<section>
+					<section>
+						<h2>AJAX</h2>
+					</section>
+					<section>
+						<h3>AJAX</h3>
+						<p>jQuery facilite l'écriture du code AJAX et il est possible de définir un certain nombre de paramèters (Voir la méthide $.ajax).</p>
+						<ul>
+							<li>url : ressource à charger</li>
+							<li>datas : paires clé/valeurs envoyées au serveur</li>
+							<li>function : fonction à exécuter en cas de réussite de la requête</li>
+							<li>type : type de la réponse fournie à la fonction callback (xml, html, script, json, text)</li>
+						</ul>
+						<pre><code>
+load(url [, datas] [,function]) // retourne un objet jQuery
+$.get(url [, datas] [,function] [,type]) // Requète HTTP de type GET et renvoie un objet XMLHttpRequest
+$.post(url [, datas] [,function] [,type]) // Requète HTTP de type POST et renvoie un objet XMLHttpRequest
+$.getScript(url [,function]) // Charge un script via la méthode HTTP GET et l'exécute		
+						</code></pre>				
+					</section>
+				</section>
+
+
+				<!-- Asctuces et bonnes pratiques -->
+				<section>
+					<section>
+						<h2>Astuces et bonnes pratiques</h2>
+					</section>
+					<section>
+				        <h2>Chainage</h2>
+						<pre><code>
+	$('div').hide();
+	$('div').addClass('newclass');
+	$('div').html();
+
+	// Méthode de chainage
+	$('div').hide().addClass('newclass').html();
+					    </code></pre>
+					</section>
+					<section>
+				        <h3>Liens externes</h3>
+						<pre><code>
+	$('document').on('click.external', 'a[rel$=external]', function(){
+		this.target = "_blank";
+	});
+					    </code></pre>
+					</section>
+					<section>
+						<h3>Bonnes pratiques</h3>
+						<ul>
+							<li>Utiliser CDN avec fallback</li>
+							<li>S'assurer de la compatibilité avec d'autres librairies</li>
+							<li>Utiliser les sélecteurs les plus rapides</li>
+							<li>Utiliser <b>for</b> plutôt que <b>each()</b></li>
+							<li>Limiter les manipulations direct du DOM</li>
+							<li>Utiliser la délégation d'événements</li>
+							<li>Utiliser la mise en cache jQuery avec <b>data()</b></li>
+						</ul>
+					</section>
+	        		<section>
+						<h3>Liens utiles</h3>
+						<ul>
+							<li>Démo : http://coding.smashingmagazine.com/2012/05/31/50-jquery-function-demos-for-aspiring-web-developers/</li>
+							<li>Perfomance : http://jsperf.com/</li>
+						</ul>
+					</section>
+					<section>
+						<h3>Désactiver les animations jQuery</h3>
+						<pre><code>
+	jQuery.fx.off = true;
+					    </code></pre>
+					</section>
 				</section>
 
 
