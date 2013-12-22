@@ -67,12 +67,12 @@
 					    <h2>Installation</h2>
 					    <p>Utilisation d'un CDN avec fallback</p>
 						<pre><code>
-	&lt;script src="http://ajax.aspnetcdn.com/ajax/jquery/jquery-2.0.0.min.js"&gt;&lt;/script>
-	&lt;script&gt;
-	if (typeof jQuery == 'undefined') {
-	    document.write(unescape("%3Cscript src='/js/jquery-2.0.0.min.js' type='text/javascript'%3E%3C/script%3E"));
-	}
-	&lt;/script&gt;
+&lt;script src="http://ajax.aspnetcdn.com/ajax/jquery/jquery-2.0.0.min.js"&gt;&lt;/script>
+&lt;script&gt;
+if (typeof jQuery == 'undefined') {
+    document.write(unescape("%3Cscript src='/js/jquery-2.0.0.min.js' type='text/javascript'%3E%3C/script%3E"));
+}
+&lt;/script&gt;
 						</code></pre>
 						<small>Télécharger : <a href="http://jquery.com/download/" target="_blank">http://jquery.com/download/</a></small>
 						<aside class="notes">
@@ -86,21 +86,21 @@
 					<section>
 						<p>Pour s'assurer que la fonction jQuery s'exécute une fois la page chargée et pouvoir manipuler le DOM sans erreur, on en-capsule l’ensemble du code jQuery dans le code ci-dessous. (Contrairement à l’évènement window.onload, le chargement complet des images de la page n’est pas nécessaire.)</p>
 						<pre><code>$(function(){
-	   // Traitement à effectuer lorsque le DOM est prêt
-	});</code></pre>
+   // Traitement à effectuer lorsque le DOM est prêt
+});</code></pre>
 					</section>
 					<section>
 						<h3>Moins de code</h3>
 						<b>Javascript</b></p>
 						<pre><code>
-	var objs = document.getElementByTagName("div");
-	for ( i = 0; i &lt; objs.length; i++ ){
-		obj[i].style.display = 'none';
-	}
+var objs = document.getElementByTagName("div");
+for ( i = 0; i &lt; objs.length; i++ ){
+	obj[i].style.display = 'none';
+}
 						</code></pre>
 						<b>jQuery</b>
 						<pre><code>
-	$("div").hide();
+$("div").hide();
 						</code></pre>
 					</section>
 				</section>
@@ -120,12 +120,12 @@
 						<p>Les sélecteurs de base correspondent aux fonctions <code>getElementById</code> et <code>getElementsByTagName</code>.</p>
 
 						<pre><code>
-	$(document) // Extension de l'objet document à la classe jQuery.
-	$('*') // Sélectionne tous les éléments.
-	$(this) // Sélectionne l'élement en cours.
-	$('#box') // Sélectionne l'élément ayant l'ID "box".
-	$('div') // Sélectionne tous les éléments de type &lt;div&gt;.
-	$('p.first') // Sélectionne les éléments &lt;p&gt; ayant la classe "first".
+$(document) // Extension de l'objet document à la classe jQuery.
+$('*') // Sélectionne tous les éléments.
+$(this) // Sélectionne l'élement en cours.
+$('#box') // Sélectionne l'élément ayant l'ID "box".
+$('div') // Sélectionne tous les éléments de type &lt;div&gt;.
+$('p.first') // Sélectionne les éléments &lt;p&gt; ayant la classe "first".
 						</pre></code>
 
 						<small>Les sélections peuvent être cumulées $('#box, div, p.first').</small>
@@ -135,65 +135,65 @@
 
 						<p>Séléction hiérarchiques</p>
 						<pre><code>
-	$('#box p') // Sélectionne tous les descendants &lt;p&gt; de l'élément identifié par box
-	$('#box > p') // Sélectionne tous les &lt;p&gt; immédiats contenus dans l'élément identifié par box
-	$('#box ~ p') // Sélectionne tous les &lt;p&gt; frères de l'élément identifié par box
-	$('#box + p') // Sélectionne tous les &lt;p&gt; dont l'élément précédent (dans le DOM) est l'élément identifié par box
+$('#box p') // Sélectionne tous les descendants &lt;p&gt; de l'élément identifié par box
+$('#box > p') // Sélectionne tous les &lt;p&gt; immédiats contenus dans l'élément identifié par box
+$('#box ~ p') // Sélectionne tous les &lt;p&gt; frères de l'élément identifié par box
+$('#box + p') // Sélectionne tous les &lt;p&gt; dont l'élément précédent (dans le DOM) est l'élément identifié par box
 						</pre></code>
 	                </section>
 					<section>
 						<h3>Séléction par filtres</h3>
 						<pre><code>
-	$('li:first') // Sélectionne le premier élément de la liste &lt;li&gt;.
-	$('li:last') // Sélectionne le dernier élément de la liste &lt;li&gt;.
-	$('li:[even|odd]') // Sélectionne les éléments &lt;li&gt; de rang [pair|impair] (le premier rang est 0).
-	$('li:[eq|lt|gt](n)')// Sélectionne le ou les éléments &lt;li&gt; de rang [égal|inférieur|supérieur] à n.
-	$(':header') // Sélectionne toutes les balises &lt;h&gt;.
-	$(':animated') // Sélectionne les éléments actuellement animés.
-	$('div:not(.ok)') // Sélectionne les &lt;div&gt; n'ayant pas la classe "ok".
+$('li:first') // Sélectionne le premier élément de la liste &lt;li&gt;.
+$('li:last') // Sélectionne le dernier élément de la liste &lt;li&gt;.
+$('li:[even|odd]') // Sélectionne les éléments &lt;li&gt; de rang [pair|impair] (le premier rang est 0).
+$('li:[eq|lt|gt](n)')// Sélectionne le ou les éléments &lt;li&gt; de rang [égal|inférieur|supérieur] à n.
+$(':header') // Sélectionne toutes les balises &lt;h&gt;.
+$(':animated') // Sélectionne les éléments actuellement animés.
+$('div:not(.ok)') // Sélectionne les &lt;div&gt; n'ayant pas la classe "ok".
 						</code></pre>
 						<small>* La notation [a|b] signifie que l'on applique le filtre a ou le filtre b.</small>
 					</section>
 					<section>
 						<h3>Séléction par filtres enfants</h3>
 						<pre><code>
-	$('ul:[first-child|last-child]') // Sélectionne les [premiers|derniers] éléments fils &lt;li&gt;de tout les &lt;ul&gt;.
-	$('ul:nth-child([n|even|odd|equation])') // Séléctionne les enfants de &lt;ul&gt; [de rang n|pairs|impairs|résultat de].
-	$('div:only-child') // Sélectionne les éléments qui sont les seuls enfants d'un élément &lt;div&gt;.
+$('ul:[first-child|last-child]') // Sélectionne les [premiers|derniers] éléments fils &lt;li&gt;de tout les &lt;ul&gt;.
+$('ul:nth-child([n|even|odd|equation])') // Séléctionne les enfants de &lt;ul&gt; [de rang n|pairs|impairs|résultat de].
+$('div:only-child') // Sélectionne les éléments qui sont les seuls enfants d'un élément &lt;div&gt;.
 						</code></pre>
 					</section>
 					<section>
 						<h3>Séléction par filtres de contenu</h3>
 						<pre><code>
-	$("div:contains('toto')") // Sélectionne les éléments &lt;div&gt; contenant le texte "toto" (sensible à la casse !)
-	$('div:empty') // Sélectionne les éléments &lt;div&gt; vides.
-	$('div:parent') // Sélectionne les éléments &lt;div&gt; ayant des enfants (y compris les noeuds texte).
-	$('div:has(p)') // Sélectionne les éléments &lt;div&gt; ayant un descendant &lt;p&gt;.
+$("div:contains('toto')") // Sélectionne les éléments &lt;div&gt; contenant le texte "toto" (sensible à la casse !)
+$('div:empty') // Sélectionne les éléments &lt;div&gt; vides.
+$('div:parent') // Sélectionne les éléments &lt;div&gt; ayant des enfants (y compris les noeuds texte).
+$('div:has(p)') // Sélectionne les éléments &lt;div&gt; ayant un descendant &lt;p&gt;.
 						</code></pre>
 					</section>
 					<section>
 						<h3>Séléction par filtres de visibilité</h3>
 						<pre><code>
-	$("div:[visible|hidden]") // Sélectionne les &lt;div&gt; qui sont [visibles|cachés].
+$("div:[visible|hidden]") // Sélectionne les &lt;div&gt; qui sont [visibles|cachés].
 						</code></pre>
 					</section>
 					<section>
 						<h3>Séléction par filtres d'attribut</h3>
 						<pre><code>
-	$('p[title]') //Sélectionne les éléments &lt;p&gt; ayant un attribut "title".
-	$('p[title="Bonjour"]') // Sélectionne les éléments &lt;p&gt; dont l'attribut title est "Bonjour".
-	$('p[title!="Bonjour"]') // Sélectionne les éléments &lt;p&gt; dont l'attribut title n'est pas "Bonjour".
-	$('p[title^="H"]') // Sélectionne les éléments dont l'attribut title commence par "H".
-	$('p[title$="H"]') // Sélectionne les éléments dont l'attribut title fini par "H".
-	$('p[title*="H"]') // Sélectionne les éléments dont l'attribut title contient "H".
+$('p[title]') //Sélectionne les éléments &lt;p&gt; ayant un attribut "title".
+$('p[title="Bonjour"]') // Sélectionne les éléments &lt;p&gt; dont l'attribut title est "Bonjour".
+$('p[title!="Bonjour"]') // Sélectionne les éléments &lt;p&gt; dont l'attribut title n'est pas "Bonjour".
+$('p[title^="H"]') // Sélectionne les éléments dont l'attribut title commence par "H".
+$('p[title$="H"]') // Sélectionne les éléments dont l'attribut title fini par "H".
+$('p[title*="H"]') // Sélectionne les éléments dont l'attribut title contient "H".
 						</code></pre>
 					</section>
 					<section>
 						<h3>Les éléments de formulaire</h3>
 						<pre><code>
-	$(':input') // Tous les éléments &lt;input&gt;, &lt;textarea&gt;, &lt;select&gt; et &lt;button&gt;.
-	$(':[text|password|radio|checkbox|submit|image|reset|button|file|hidden]') // Les &lt;input&gt; du type choisi.
-	$(':[enabled|disabled|checked|selected]') // Les &lt;input&gt; possédant l'attibut indiqué.
+$(':input') // Tous les éléments &lt;input&gt;, &lt;textarea&gt;, &lt;select&gt; et &lt;button&gt;.
+$(':[text|password|radio|checkbox|submit|image|reset|button|file|hidden]') // Les &lt;input&gt; du type choisi.
+$(':[enabled|disabled|checked|selected]') // Les &lt;input&gt; possédant l'attibut indiqué.
 						</code></pre>
 					</section>
 				</section>
@@ -216,13 +216,13 @@
 						<h3>Gestion des attibuts</h3>
 						<p><b>attr()</b> possède plusieurs signature permettant :</p>
 						<pre><code>
-	$(this).attr('name'); // Connaître la valeur d'un attibut
-	$(this).attr('name', 'toto'); // Changer la valeur d'un attribut
-	$(this).attr({name: 'toto', value: 'tutu'); // Changer la valeur de plusieurs attributs (Format JSON)
-	$(this).attr('value', function(index,value){ // Changer l'attibut à l'aide de fonction
-		if(index > 1)
-			return "item" + index;
-	});					
+$(this).attr('name'); // Connaître la valeur d'un attibut
+$(this).attr('name', 'toto'); // Changer la valeur d'un attribut
+$(this).attr({name: 'toto', value: 'tutu'); // Changer la valeur de plusieurs attributs (Format JSON)
+$(this).attr('value', function(index,value){ // Changer l'attibut à l'aide de fonction
+	if(index > 1)
+		return "item" + index;
+});					
 						</code></pre>
 						<p>Il existe également <b>removeAttr()</b> pour supprimer et <b>val()</b> qui retourne la valeur de l'attribut "value".</p>
 					</section>
@@ -341,11 +341,12 @@
 							<li>des paramètres optionnels : vitesse, easing et une fonction callback</li>
 						</ul>
 						<pre><code>
-	$(this).animate(
-		{ left:300, width:"200px", opacity:0.5 },
-		1000,
-		function(){ alert("Animation terminée !"); }
-	);					</code></pre>
+$(this).animate(
+	{ left:300, width:"200px", opacity:0.5 },
+	1000,
+	function(){ alert("Animation terminée !"); }
+);					
+						</code></pre>
 
 					</section>
 				</section>
@@ -359,44 +360,44 @@
 						<h3>Parcourir le DOM</h3>
 						<p>L'ensemble des méthodes jQuery de parcours du DOM renvoie un objet jQuery, ce qui permet de chaîner les appels</p>
 						<pre><code>
-	children() // renvoie les enfants immédiats de chaque élément sélectionné
-	parent() // renvoie le parent immédiat de chaque élément sélectionné
-	parents() // renvoie une collection d'éléments ancêtres de chaque élément sélectionné
-	parentUntil() // renvoie une collection d'éléments ancêtres de chaque élément sélectionné, jusqu'à un élément ou sélecteur
-	siblings() // renvoie les frères de chaque élément de la sélection
-	prev(), prevAll() // renvoie le frère immédiatement précédent / les frères précédents de chaque élément de la sélection
-	next(), nextAll() // renvoie le frère immédiatement suivrant / les frères suivants de chaque élément de la sélection
-	content() // renvoie tous les noeuds enfants de chaque élément de la sélection
-	closest() // renvoie le parent le plus proche de chaque élément sélectionné
-	find() // renvoie les descendants de chaque élément sélectionné
+children() // renvoie les enfants immédiats de chaque élément sélectionné
+parent() // renvoie le parent immédiat de chaque élément sélectionné
+parents() // renvoie une collection d'éléments ancêtres de chaque élément sélectionné
+parentUntil() // renvoie une collection d'éléments ancêtres de chaque élément sélectionné, jusqu'à un élément ou sélecteur
+siblings() // renvoie les frères de chaque élément de la sélection
+prev(), prevAll() // renvoie le frère immédiatement précédent / les frères précédents de chaque élément de la sélection
+next(), nextAll() // renvoie le frère immédiatement suivrant / les frères suivants de chaque élément de la sélection
+content() // renvoie tous les noeuds enfants de chaque élément de la sélection
+closest() // renvoie le parent le plus proche de chaque élément sélectionné
+find() // renvoie les descendants de chaque élément sélectionné
 						</code></pre>
 					</section>
 					<section>
 						<h3>Manipuler le DOM</h3>
 						<p>L'ensemble des méthodes jQuery de parcours du DOM renvoie un objet jQuery, ce qui permet de chaîner les appels</p>
 						<pre><code>
-	text() et html() // modification du contenu
-	append() // ajout à l'intérieur de l'élément sélectionné
-	after() // ajout après l'élément sélectionné
-	before() // ajout avant l'élément sélectionné
-	wrap() // ajout autour de l'élément sélectionné
-	wrapAll() // ajout autour de tous les éléments de la sélection
-	wrapInner() // ajout autour des enfants de l'élément sélectionné
-	unwrap() // annule l'action de wrap()
-	replaceWith() // remplace l'élément sélectionné par le contenu spécifié
-	remove() // supprime du DOM tous les éléments répondant aux critères de sélection
-	detach() // comme remove(), mais en conservant les données associées
-	clone() // copie les éléments
+text() et html() // modification du contenu
+append() // ajout à l'intérieur de l'élément sélectionné
+after() // ajout après l'élément sélectionné
+before() // ajout avant l'élément sélectionné
+wrap() // ajout autour de l'élément sélectionné
+wrapAll() // ajout autour de tous les éléments de la sélection
+wrapInner() // ajout autour des enfants de l'élément sélectionné
+unwrap() // annule l'action de wrap()
+replaceWith() // remplace l'élément sélectionné par le contenu spécifié
+remove() // supprime du DOM tous les éléments répondant aux critères de sélection
+detach() // comme remove(), mais en conservant les données associées
+clone() // copie les éléments
 						</code></pre>
 					</section>
 					<section>
 						<h3>Filtrer le DOM</h3>
 						<pre><code>
-	filter(expression) // réduit l'ensemble des éléments sélectionnés à ceux qui passe le filtre
-	eq(index) // reduit l'ensemble des éléments sélectionnés à celui correspondant à la position
-	is(expression) // indique si la sélection répond à un critère (retourne true ou false)
-	first() et last() // reduit l'ensemble des éléments sélectionnés au premier ou dernier item
-	has(selecteur) // reduit l'ensemble des éléments sélectionnés à ceux qui ont un descendant correspondant au sélecteur					
+filter(expression) // réduit l'ensemble des éléments sélectionnés à ceux qui passe le filtre
+eq(index) // reduit l'ensemble des éléments sélectionnés à celui correspondant à la position
+is(expression) // indique si la sélection répond à un critère (retourne true ou false)
+first() et last() // reduit l'ensemble des éléments sélectionnés au premier ou dernier item
+has(selecteur) // reduit l'ensemble des éléments sélectionnés à ceux qui ont un descendant correspondant au sélecteur					
 						</code></pre>
 					</section>
 				</section>
@@ -434,20 +435,20 @@ $.getScript(url [,function]) // Charge un script via la méthode HTTP GET et l'e
 					<section>
 				        <h2>Chainage</h2>
 						<pre><code>
-	$('div').hide();
-	$('div').addClass('newclass');
-	$('div').html();
+$('div').hide();
+$('div').addClass('newclass');
+$('div').html();
 
-	// Méthode de chainage
-	$('div').hide().addClass('newclass').html();
+// Méthode de chainage
+$('div').hide().addClass('newclass').html();
 					    </code></pre>
 					</section>
 					<section>
 				        <h3>Liens externes</h3>
 						<pre><code>
-	$('document').on('click.external', 'a[rel$=external]', function(){
-		this.target = "_blank";
-	});
+$('document').on('click.external', 'a[rel$=external]', function(){
+	this.target = "_blank";
+});
 					    </code></pre>
 					</section>
 					<section>
@@ -472,7 +473,7 @@ $.getScript(url [,function]) // Charge un script via la méthode HTTP GET et l'e
 					<section>
 						<h3>Désactiver les animations jQuery</h3>
 						<pre><code>
-	jQuery.fx.off = true;
+jQuery.fx.off = true;
 					    </code></pre>
 					</section>
 				</section>
