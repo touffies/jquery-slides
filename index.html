@@ -1,0 +1,371 @@
+<!doctype html>
+<html lang="fr">
+
+	<head>
+		<meta charset="utf-8">
+
+		<title>JQUERY - OpenStudio</title>
+
+		<meta name="description" content="Formation JQUERY">
+		<meta name="author" content="Christophe LAFFONT">
+
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+		<!-- Reveal CSS -->
+		<link rel="stylesheet" href="revealjs/css/reveal.min.css">
+		<link rel="stylesheet" href="revealjs/css/theme/sky.css" id="theme">
+
+		<!-- Custom CSS -->
+		<link rel="stylesheet" href="assets/css/custom.css">
+
+		<!-- Syntax highlighting CSS -->
+		<link rel="stylesheet" href="revealjs/lib/css/zenburn.css">
+
+		<!-- If the query includes 'print-pdf', use the PDF print sheet -->
+		<script>
+			document.write( '<link rel="stylesheet" href="revealjs/css/print/' + ( window.location.search.match( /print-pdf/gi ) ? 'pdf' : 'paper' ) + '.css" type="text/css" media="print">' );
+		</script>
+
+		<!--[if lt IE 9]>
+		<script src="revealjs/lib/js/html5shiv.js"></script>
+		<![endif]-->
+	</head>
+
+	<body>
+
+		<div class="reveal">
+
+			<!-- Any section element inside of this container is displayed as a slide -->
+			<div class="slides">
+				<section>
+					<img src="assets/img/jquery-logo.png" alt="jQUERY logo">
+					<p>
+						<small>Par <a href="http://www.christophelaffont.com">Christophe Laffont</a> / <a href="http://twitter.com/touffies">@touffies</a></small>
+					</p>
+					
+				</section>
+
+				
+				<!-- Intro JQUERY -->
+				<section>
+					<h2>Pourquoi jQuery</h2>
+					<p>jQuery est une librairie JavaScript qui qui permet de manipuler le DOM, d'utiliser AJAX, de créer des animations...</p>
+				    <ul>
+					    <li>Simplifier le code</li>
+					    <li>Cross browser</li>
+					    <li>HTML / DOM manipulation</li>
+					    <li>CSS manipulation</li>
+					    <li>Gestionnaire d'évènements</li>
+					    <li>Effets / Animations</li>
+					    <li>Facilite les requêtes Ajax</li>
+					</ul>
+				</section>
+				<section>
+				    <h2>Installation</h2>
+				    <p>Utilisation d'un CDN avec fallback</p>
+					<pre><code>
+&lt;script src="http://ajax.aspnetcdn.com/ajax/jquery/jquery-2.0.0.min.js"&gt;&lt;/script>
+&lt;script&gt;
+if (typeof jQuery == 'undefined') {
+    document.write(unescape("%3Cscript src='/js/jquery-2.0.0.min.js' type='text/javascript'%3E%3C/script%3E"));
+}
+&lt;/script&gt;
+					</code></pre>
+					<small>Télécharger : <a href="http://jquery.com/download/" target="_blank">http://jquery.com/download/</a></small>
+					<aside class="notes">
+						UN grand avantage de l'utilisation de jQuery hébergé par Google est que de nombreux utilisateurs auront déjà télécharger jQuery de Google lors de la visite d'un autre site.
+					</aside>
+				</section>
+				<section>
+					<h3>La fonction jquery()</h3>
+					<p>jQuery repose sur une seule fonction : jQuery() ou $(). Comme toutes les fonctions JavaScript elle accepte des paramètres, et retourne un objet, que nous appellons "objet jQuery".</p>
+				</section>
+				<section>
+					<p>Pour s'assurer que la fonction jQuery s'exécute une fois la page chargée et pouvoir manipuler le DOM sans erreur, on en-capsule l’ensemble du code jQuery dans le code ci-dessous. (Contrairement à l’évènement window.onload, le chargement complet des images de la page n’est pas nécessaire.)</p>
+					<pre><code>$(function(){
+   // Traitement à effectuer lorsque le DOM est prêt
+});</code></pre>
+				</section>
+				<section>
+					<h3>Moins de code</h3>
+					<b>Javascript</b></p>
+					<pre><code>
+var objs = document.getElementByTagName("div");
+for ( i = 0; i &lt; objs.length; i++ ){
+	obj[i].style.display = 'none';
+}
+					</code></pre>
+					<b>jQuery</b>
+					<pre><code>
+$("div").hide();
+					</code></pre>
+				</section>
+			</section>
+
+			
+			<!-- Présentation des sélecteurs -->
+			<section>
+				<section>
+					<h2>Présentation des sélecteurs</h2>
+				</section>
+				<section>
+					<p>jQuery propose deux approches pour sélectionner des éléments. La première utilise une combinaison de sélecteurs CSS et XPath passés comme chaîne de caractères au  constructeur jQuery (comme par exemple $("div > ul a")). La seconde se sert de différentes méthodes de l’objet jQuery. Les deux approches peuvent être combinées.</p>
+				</section>	
+				<section>
+					<h3>Les sélecteurs de base</h3>
+
+					<p>Les sélecteurs de base correspondent aux fonctions <code>getElementById</code> et <code>getElementsByTagName</code>.</p>
+
+					<pre><code>
+$(document) // Extension de l'objet document à la classe jQuery.
+$('*') // Sélectionne tous les éléments.
+$(this) // Sélectionne l'élement en cours.
+$('#box') // Sélectionne l'élément ayant l'ID "box".
+$('div') // Sélectionne tous les éléments de type &lt;div&gt;.
+$('p.first') // Sélectionne les éléments &lt;p&gt; ayant la classe "first".
+					</pre></code>
+
+					<small>Les sélections peuvent être cumulées $('#box, div, p.first').</small>
+                </section>
+                <section>
+					<h3>Les sélecteurs de base</h3>
+
+					<p>Séléction hiérarchiques</p>
+					<pre><code>
+$('#box p') // Sélectionne tous les descendants &lt;p&gt; de l'élément identifié par box
+$('#box > p') // Sélectionne tous les &lt;p&gt; immédiats contenus dans l'élément identifié par box
+$('#box ~ p') // Sélectionne tous les &lt;p&gt; frères de l'élément identifié par box
+$('#box + p') // Sélectionne tous les &lt;p&gt; dont l'élément précédent (dans le DOM) est l'élément identifié par box
+					</pre></code>
+                </section>
+				<section>
+					<h3>Séléction par filtres</h3>
+					<pre><code>
+$('li:first') // Sélectionne le premier élément de la liste &lt;li&gt;.
+$('li:last') // Sélectionne le dernier élément de la liste &lt;li&gt;.
+$('li:[even|odd]') // Sélectionne les éléments &lt;li&gt; de rang [pair|impair] (le premier rang est 0).
+$('li:[eq|lt|gt](n)')// Sélectionne le ou les éléments &lt;li&gt; de rang [égal|inférieur|supérieur] à n.
+$(':header') // Sélectionne toutes les balises &lt;h&gt;.
+$(':animated') // Sélectionne les éléments actuellement animés.
+$('div:not(.ok)') // Sélectionne les &lt;div&gt; n'ayant pas la classe "ok".
+					</code></pre>
+					<small>* La notation [a|b] signifie que l'on applique le filtre a ou le filtre b.</small>
+				</section>
+				<section>
+					<h3>Séléction par filtres enfants</h3>
+					<pre><code>
+$('ul:[first-child|last-child]') // Sélectionne les [premiers|derniers] éléments fils &lt;li&gt;de tout les &lt;ul&gt;.
+$('ul:nth-child([n|even|odd|equation])') // Séléctionne les enfants de &lt;ul&gt; [de rang n|pairs|impairs|résultat de].
+$('div:only-child') // Sélectionne les éléments qui sont les seuls enfants d'un élément &lt;div&gt;.
+					</code></pre>
+				</section>
+				<section>
+					<h3>Séléction par filtres de contenu</h3>
+					<pre><code>
+$("div:contains('toto')") // Sélectionne les éléments &lt;div&gt; contenant le texte "toto" (sensible à la casse !)
+$('div:empty') // Sélectionne les éléments &lt;div&gt; vides.
+$('div:parent') // Sélectionne les éléments &lt;div&gt; ayant des enfants (y compris les noeuds texte).
+$('div:has(p)') // Sélectionne les éléments &lt;div&gt; ayant un descendant &lt;p&gt;.
+					</code></pre>
+				</section>
+				<section>
+					<h3>Séléction par filtres de visibilité</h3>
+					<pre><code>
+$("div:[visible|hidden]") // Sélectionne les &lt;div&gt; qui sont [visibles|cachés].
+					</code></pre>
+				</section>
+				<section>
+					<h3>Séléction par filtres d'attribut</h3>
+					<pre><code>
+$('p[title]') //Sélectionne les éléments &lt;p&gt; ayant un attribut "title".
+$('p[title="Bonjour"]') // Sélectionne les éléments &lt;p&gt; dont l'attribut title est "Bonjour".
+$('p[title!="Bonjour"]') // Sélectionne les éléments &lt;p&gt; dont l'attribut title n'est pas "Bonjour".
+$('p[title^="H"]') // Sélectionne les éléments dont l'attribut title commence par "H".
+$('p[title$="H"]') // Sélectionne les éléments dont l'attribut title fini par "H".
+$('p[title*="H"]') // Sélectionne les éléments dont l'attribut title contient "H".
+					</code></pre>
+				</section>
+				<section>
+					<h3>Les éléments de formulaire</h3>
+					<pre><code>
+$(':input') // Tous les éléments &lt;input&gt;, &lt;textarea&gt;, &lt;select&gt; et &lt;button&gt;.
+$(':[text|password|radio|checkbox|submit|image|reset|button|file|hidden]') // Les &lt;input&gt; du type choisi.
+$(':[enabled|disabled|checked|selected]') // Les &lt;input&gt; possédant l'attibut indiqué.
+					</code></pre>
+				</section>
+			</section>
+
+
+			<!-- Les méthodes -->
+			<section>
+			    <section>
+			        <h2>Les Méthodes</h2>
+				</section>
+        		<section>
+					<h3>Méthodes utilitaires</h3>
+					<ul>
+						<li><b>$.each(collection, callback(index,value))</b> : applique une fonction sur chaque éément de la selection.</li>
+						<li><b>data(key,value)</b> : associe une paire clé/valeur à un élément sélectionné.</li>
+						<li><b>data(key)</b> : lit une valeur par sa clé sur l'élement sélectionné.</li>
+					</ul>
+				</section>
+				<section>
+					<h3>Conenu d'un élément</h3>
+					<p>La méthode <b>text()</b> permet de lire et modifier le contenu d'un élément sous forme textuelle.</p>
+					<small>Les balises seront transformés en entité <b>& lt;</b> et <b>& gt;</b></small>
+
+					<p>La méthode <b>html()</b> permet de lire et modifier le contenu HTML d'un élément. (Cette méthode utilise innerHTML)</p>
+				</section>
+				<section>
+					<h3>Gestion des CSS (Classes)</h3>
+					<ul>
+						<li><b>addClass</b> : ajout d'une ou plusieurs classes</li>
+						<li><b>removeClass</b> : suppression d'une ou plusieurs classes</li>
+						<li><b>hasClass</b> : vérifie la présence d'une classe</li>
+						<li><b>toggleClass</b> : ajoute ou supprime une classe</li>
+					</ul>
+				</section>
+				<section>
+					<h3>Gestion des CSS (Styles)</h3>
+					<ul>
+						<li><b>css()</b> : permet de metre à jour ou de récupérer un style</li>
+						<li><b>height(), width()</b> : Retourne la hauteur et la largeur</li>
+						<li><b>innerHeight(), innerWidth()</b> : dimension interne</li>
+						<li><b>outerHeight(), outerWidth()</b> : dimension externe</li>
+						<li><b>position()</b> : retourn sous forme d'objet {top,left} la position par rapport au parent</li>
+						<li><b>offset()</b> : retourn sous forme d'objet {top,left} la position relative par rapport au document</li>
+						<li><b>scrollTop(), scrollLeft()</b> : Modifie le décalage entre le bord du document et l'élément sélectionné</li>
+					</ul>
+				</section>
+				<section>
+					<h3>Les événements</h3>
+					<ul>
+						<li>Chargement du document : <b>load(), ready(), unload()</b></li>
+						<li>Evénements du formulaire : <b>blur(), change(), focus(), select(), submit()</b></li>
+						<li>Evénements clavier : <b>focusin(), focusout(), keydown(), keypressed(), keyup()</b></li>
+						<li>Evénements souris
+							<ul>
+								<li>Click : <b>click(), dbclick()</b></li>
+								<li>Mouvements : <b>mousedown(), mouseup(), mousemove(),mouseover()</b></li>
+								<li><b>hover() et toggle()</b></li>
+							</ul>
+						</li>
+					</ul>
+					<small>Certains événements IE sont émulés : <b>mouseenter() et mouseleave()</b></small>
+				</section>
+				<section>
+					<h3>Les événements</h3>
+					<p><b>bind()</b> permet de lier un (ou plusieurs) événement, des données et un gestionnaire d'événement à une sélection d'élément</p>
+					<small>L'utilisation de <b>.on()</b> est recommendée</small>
+				</section>
+			</section>
+
+
+			<!-- Les effets -->
+			<section>
+				<section>
+					<h2>Les effets</h2>
+				</section>
+				<section>
+					<h3>Les effets</h3>
+					<p>La plupart des fonctions sur les effets utilise des parmètres optionnels :</p>
+					<ul>
+						<li><b>speed</b> : 'slow', 'normal' ou 'fast' - ou un nombre en millisecondes</li>
+						<li><b>easing</b> : effet prédéfini personnalisé par plugin</li>
+						<li><b>function</b> : une fonction callback qui sera invoquée à la fin de l'effet</li>
+					</ul>
+				</section>
+				<seciton>
+					<h3>Les effets</h3>
+					<ul>
+						<li>Effets de base : <b>hide(), show()</b></li>
+						<li>Glissements : <b>slideDown(), slideUp()</b></li>
+						<li>Effets de fondu : <b>fadeIn(), fadeOut(), fadeTo()</b></li>
+						<li>Evénements souris
+							<ul>
+								<li>Click : <b>click(), dbclick()</b></li>
+								<li>Mouvements : <b>mousedown(), mouseup(), mousemove(),mouseover()</b></li>
+								<li><b>hover() et toggle()</b></li>
+							</ul>
+						</li>
+					</ul>
+					<aside class="notes">
+							fadeTo : modifie l'opacité de l'élément sélectionné
+					</aside>
+				</seciton>
+			</section>
+
+
+			<!-- Asctuces et bonnes pratiques -->
+			<section>
+$.trim("  une chaine  "); // Supprimer les espaces en début et fin de chaine				
+				<section>
+			        <h2>Chainage</h2>
+					<pre><code>
+$("div").hide();
+$("div").addClass("newclass");
+$("div").html();
+
+// Méthode de chainage
+$("div").addClass("newclass").fadeOut();
+				    </code></pre>
+				</section>
+        		<section>
+					<h3>Liens utiles</h3>
+					<ul>
+						<li>http://jsperf.com/</li>
+				</section>
+
+
+				<!-- FIN -->
+				<section>
+					<h1>Merci !</h1>
+				</section>
+			</div>
+
+		</div>
+
+		<script src="revealjs/lib/js/head.min.js"></script>
+		<script src="revealjs/js/reveal.min.js"></script>
+
+		<script>
+
+			// Full list of configuration options available here:
+			// https://github.com/hakimel/reveal.js#configuration
+			Reveal.initialize({
+				controls: true,
+				progress: true,
+				history: true,
+				center: true,
+
+				theme: Reveal.getQueryHash().theme, // available themes are in /css/theme
+				transition: Reveal.getQueryHash().transition || 'default', // default/cube/page/concave/zoom/linear/fade/none
+
+				// Parallax scrolling
+				// parallaxBackgroundImage: 'https://s3.amazonaws.com/hakim-static/reveal-js/reveal-parallax-1.jpg',
+				// parallaxBackgroundSize: '2100px 900px',
+
+				// Optional libraries used to extend on reveal.js
+				dependencies: [
+					{ src: 'revealjs/lib/js/classList.js', condition: function() { return !document.body.classList; } },
+					{ src: 'revealjs/plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } },
+					{ src: 'revealjs/plugin/zoom-js/zoom.js', async: true, condition: function() { return !!document.body.classList; } },
+					{ src: 'revealjs/plugin/notes/notes.js', async: true, condition: function() { return !!document.body.classList; } }
+				]
+			});
+
+			// Push reveal.js notes into the console
+			Reveal.addEventListener( 'slidechanged', function( event ) {
+				// event.previousSlide, event.currentSlide, event.indexh, event.indexv
+				var notes = event.currentSlide.querySelector(".notes");
+				if(notes) {
+					console.info(notes.innerHTML.replace(/\n\s+/g,'\n'));
+				}
+			} );
+		</script>
+
+	</body>
+</html>
