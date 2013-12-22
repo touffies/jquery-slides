@@ -52,7 +52,7 @@
 				<section>
 					<section>
 						<h2>Pourquoi jQuery</h2>
-						<p>jQuery est une librairie JavaScript qui qui permet de manipuler le DOM, d'utiliser AJAX, de créer des animations...</p>
+						<p>jQuery est une librairie JavaScript qui permet de manipuler le DOM, d'utiliser AJAX, de créer des animations...</p>
 					    <ul>
 						    <li>Simplifier le code</li>
 						    <li>Cross browser</li>
@@ -117,7 +117,7 @@ $("div").hide();
 					<section>
 						<h3>Les sélecteurs de base</h3>
 
-						<p>Les sélecteurs de base correspondent aux fonctions <code>getElementById</code> et <code>getElementsByTagName</code>.</p>
+						<p>Les sélecteurs de base correspondent aux fonctions <b>getElementById</b> et <b>getElementsByTagName</b>.</p>
 
 						<pre><code>
 $(document) // Extension de l'objet document à la classe jQuery.
@@ -207,7 +207,7 @@ $(':[enabled|disabled|checked|selected]') // Les &lt;input&gt; possédant l'atti
 	        		<section>
 						<h3>Méthodes utilitaires</h3>
 						<ul>
-							<li><b>$.each(collection, callback(index,value))</b> : applique une fonction sur chaque éément de la selection.</li>
+							<li><b>$.each(collection, callback(index,value))</b> : applique une fonction sur chaque éLément de la selection.</li>
 							<li><b>data(key,value)</b> : associe une paire clé/valeur à un élément sélectionné.</li>
 							<li><b>data(key)</b> : lit une valeur par sa clé sur l'élement sélectionné.</li>
 						</ul>
@@ -219,7 +219,7 @@ $(':[enabled|disabled|checked|selected]') // Les &lt;input&gt; possédant l'atti
 $(this).attr('name'); // Connaître la valeur d'un attibut
 $(this).attr('name', 'toto'); // Changer la valeur d'un attribut
 $(this).attr({name: 'toto', value: 'tutu'); // Changer la valeur de plusieurs attributs (Format JSON)
-$(this).attr('value', function(index,value){ // Changer l'attibut à l'aide de fonction
+$(this).attr('value', function(index,value){ // Changer l'attribut à l'aide de fonction
 	if(index > 1)
 		return "item" + index;
 });					
@@ -245,7 +245,7 @@ $(this).attr('value', function(index,value){ // Changer l'attibut à l'aide de f
 					<section>
 						<h3>Gestion des CSS (Styles)</h3>
 						<ul>
-							<li><b>css()</b> : permet de metre à jour ou de récupérer un style</li>
+							<li><b>css()</b> : permet de mettre à jour ou de récupérer un style</li>
 							<li><b>height(), width()</b> : Retourne la hauteur et la largeur</li>
 							<li><b>innerHeight(), innerWidth()</b> : dimension interne</li>
 							<li><b>outerHeight(), outerWidth()</b> : dimension externe</li>
@@ -257,7 +257,7 @@ $(this).attr('value', function(index,value){ // Changer l'attibut à l'aide de f
 					<section>
 						<h3>Les événements</h3>
 						<ul>
-							<li>Evenements du navigateur : <b>error(), resize() et scroll()</b></li>
+							<li>Evénements du navigateur : <b>error(), resize() et scroll()</b></li>
 							<li>Chargement du document : <b>load(), ready(), unload()</b></li>
 							<li>Evénements du formulaire : <b>blur(), change(), focus(), select(), submit()</b></li>
 							<li>Evénements clavier : <b>focusin(), focusout(), keydown(), keypressed(), keyup()</b></li>
@@ -337,7 +337,7 @@ $(this).attr('value', function(index,value){ // Changer l'attibut à l'aide de f
 						<h3>Les effets avec animate()</h3>
 						<p><b>animate()</b> permet de créer une animation.</p>
 						<ul>
-							<li>un paramètre obligqtoire sous forme d'objet JSON fournit les styles à animer</li>
+							<li>un paramètre obligatoire sous forme d'objet JSON fournit les styles à animer</li>
 							<li>des paramètres optionnels : vitesse, easing et une fonction callback</li>
 						</ul>
 						<pre><code>
@@ -374,7 +374,6 @@ find() // renvoie les descendants de chaque élément sélectionné
 					</section>
 					<section>
 						<h3>Manipuler le DOM</h3>
-						<p>L'ensemble des méthodes jQuery de parcours du DOM renvoie un objet jQuery, ce qui permet de chaîner les appels</p>
 						<pre><code>
 text() et html() // modification du contenu
 append() // ajout à l'intérieur de l'élément sélectionné
@@ -410,7 +409,7 @@ has(selecteur) // reduit l'ensemble des éléments sélectionnés à ceux qui on
 					</section>
 					<section>
 						<h3>AJAX</h3>
-						<p>jQuery facilite l'écriture du code AJAX et il est possible de définir un certain nombre de paramèters (Voir la méthide $.ajax).</p>
+						<p>jQuery facilite l'écriture du code AJAX et il est possible de définir un certain nombre de paramèters (Voir la méthode $.ajax).</p>
 						<ul>
 							<li>url : ressource à charger</li>
 							<li>datas : paires clé/valeurs envoyées au serveur</li>
@@ -444,17 +443,9 @@ $('div').hide().addClass('newclass').html();
 					    </code></pre>
 					</section>
 					<section>
-				        <h3>Liens externes</h3>
-						<pre><code>
-$('document').on('click.external', 'a[rel$=external]', function(){
-	this.target = "_blank";
-});
-					    </code></pre>
-					</section>
-					<section>
 						<h3>Bonnes pratiques</h3>
 						<ul>
-							<li>Utiliser CDN avec fallback</li>
+							<li>Charger jQuery d'un CDN avec fallback</li>
 							<li>S'assurer de la compatibilité avec d'autres librairies</li>
 							<li>Utiliser les sélecteurs les plus rapides</li>
 							<li>Utiliser <b>for</b> plutôt que <b>each()</b></li>
@@ -465,16 +456,21 @@ $('document').on('click.external', 'a[rel$=external]', function(){
 					</section>
 	        		<section>
 						<h3>Liens utiles</h3>
-						<ul>
-							<li>Démo : http://coding.smashingmagazine.com/2012/05/31/50-jquery-function-demos-for-aspiring-web-developers/</li>
-							<li>Perfomance : http://jsperf.com/</li>
-						</ul>
-					</section>
-					<section>
-						<h3>Désactiver les animations jQuery</h3>
-						<pre><code>
-jQuery.fx.off = true;
-					    </code></pre>
+						<pre>
+jQuery : http://jquery.com/
+jQuery UI : http://jqueryui.com/
+jQuery Mobile : http://jquerymobile.com/
+jQUery Form validation : http://jqueryvalidation.org/
+						</pre>
+						<aside class="notes">
+							Slideshow :http://www.pixedelic.com/plugins/camera/
+							Zones scrollables : http://darsa.in/sly/
+							Mobile touch slider : http://www.idangero.us/sliders/swiper/index.php
+							Checkbox : http://fronteed.com/iCheck/
+							Démo : http://coding.smashingmagazine.com/2012/05/31/50-jquery-function-demos-for-aspiring-web-developers/
+							Perfomance : http://jsperf.com/
+							Faire un plugin : http://stefangabos.ro/jquery/jquery-plugin-boilerplate-revisited/
+						</aside>
 					</section>
 				</section>
 
